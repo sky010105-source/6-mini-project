@@ -33,6 +33,8 @@ phases:
       - docker push $BACKEND_URI:latest
       - docker push $BACKEND_URI:$IMAGE_TAG
       
+      - cd $CODEBUILD_SRC_DIR
+      
       - echo Setting AWS EKS Context...
       - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_DEFAULT_REGION
       - echo Deploying to EKS Cluster...
