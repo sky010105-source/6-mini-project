@@ -19,6 +19,8 @@ spec:
         image: 879772956301.dkr.ecr.us-west-1.amazonaws.com/team23-backend:latest
         ports:
         - containerPort: 8080
+      imagePullSecrets:
+      - name: aws-ecr-cred
 ---
 apiVersion: v1
 kind: Service
