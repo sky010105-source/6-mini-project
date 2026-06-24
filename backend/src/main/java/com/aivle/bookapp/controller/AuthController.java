@@ -20,6 +20,7 @@ import com.aivle.bookapp.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
