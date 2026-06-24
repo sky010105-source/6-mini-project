@@ -1,18 +1,20 @@
 FROM public.ecr.aws/docker/library/node:18-slim
-
+FROM public.ecr.aws/docker/library/eclipse-temurin:17-jdk AS build
 WORKDIR /app
 
-# 1. 패키지 파일만 먼저 복사 (캐싱 활용)
-COPY package*.json ./
+COPY gradlew .
+COPY gradle gradle
+COPY build.gradle .
+COPY settings.gradle .
+COPY src src
 
-# 2. 의존성 설치
-RUN npm install
+RUN chmod +x ./gradlew
+RUN ./gradlew clean bootJar -x test
 
-# 3. 나머지 소스 코드 전체 복사
-COPY . .
+FROM public.ecr.aws/docker/library/eclipse-temurin:17-jre
+WORKDIR /app
 
-# 4. 앱이 사용하는 포트를 8080으로 명시
+COPY --from=build /app/build/libs/*.jar app.jar
+
 EXPOSE 8080
-
-# 5. 서버 실행 명령어 (시작 파일명이 다르면 index.js 부분을 수정하세요)
-CMD ["node", "index.js"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
