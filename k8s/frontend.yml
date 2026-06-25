@@ -20,10 +20,11 @@ spec:
       containers:
       - name: frontend-container
         image: 879772956301.dkr.ecr.us-west-1.amazonaws.com/team23-frontend:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
       imagePullSecrets:
-      - name: Always
+      - name: aws-ecr-cred
 ---
 apiVersion: v1
 kind: Service
