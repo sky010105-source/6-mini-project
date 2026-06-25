@@ -23,7 +23,7 @@ spec:
         ports:
         - containerPort: 80
       imagePullSecrets:
-      - name: aws-ecr-cred
+      - name: Always
 ---
 apiVersion: v1
 kind: Service
