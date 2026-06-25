@@ -1,4 +1,4 @@
-const AUTH_URL = 'http://localhost:8080/auth';
+const AUTH_URL = 'http://af312447745f84659a50d8236ab58f81-1237696229.us-west-1.elb.amazonaws.com:8080/auth';
 const TOKEN_KEY = 'auth_token';
 const USERNAME_KEY = 'auth_username';
 
